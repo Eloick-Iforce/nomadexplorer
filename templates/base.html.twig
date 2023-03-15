@@ -1,19 +1,128 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}NomadExplorer - Acceuil{% endblock %}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
+    />
+    {# Run `composer require symfony/webpack-encore-bundle` to start using
+    Symfony UX #} {% block stylesheets %}
+    {{
+      encore_entry_link_tags("app")
+    }}
+    {% endblock %} {% block javascripts %}
+    {{
+      encore_entry_script_tags("app")
+    }}
+    {% endblock %}
+  </head>
+  <body>
+    <nav id="nav" class="fixed top-0 w-full h-[72px]">
+      <div class="flex justify-between items-center text-white container">
+        <a href="{{ path('home') }}" role="button" class="flex items-center">
+          <img
+            src="{{ asset('images/logo-nomadlist.svg') }}"
+            alt="logo nomadlist"
+          />
+          <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
+        </a>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+        <ul class="hidden items-center lg:flex">
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="{{ path('home') }}">Accueil</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="{{ path('app_destination_index') }}">Trouvez un voyage</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+
+        <div class="hidden gap-6 font-bold lg:flex">
+          <a href="#">Se connecter</a>
+          <a href="#">S'inscrire</a>
+        </div>
+      </div>
+    </nav>
+    <main class="container">{% block body %} {% endblock %}</main>
+
+    <footer class="pt-12 border-t border-[#5D666E] mt-12">
+      <div class="container">
+        <div class="flex justify-center items-center w-full">
+          <a href="{{ path('home') }}" role="button" class="flex items-center">
+            <img
+              src="{{ asset('images/logo-nomadlist.svg') }}"
+              alt="logo nomadlist"
+            />
+            <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
+          </a>
+        </div>
+
+        <ul
+          class="flex flex-col justify-center items-center text-white font-bold my-12 lg:flex-row"
+        >
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="{{ path('home') }}">Acceuil</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="{{ path('app_destination_index') }}">Trouver un voyage</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="#">Contact</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="#">Mentions légales</a>
+          </li>
+          <li
+            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
+          >
+            <a href="#">Politiques de confitiendalité</a>
+          </li>
+        </ul>
+
+        <div
+          class="flex flex-col items-center justify-between text-sm text-[#F7FAFC] py-12 md:flex-row"
+        >
+          <p>
+            &copy; Build by Axel Pointud | Sebastien Gross | Eloick Mickiz |
+            Gabin Chenot
+          </p>
+          <p>BUT MMI2 - SAE401</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      //animation nav bar
+      function animationNavbar() {
+        const nav = document.querySelector("#nav");
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 20) {
+            nav.classList.add("nav-active");
+          } else {
+            nav.classList.remove("nav-active");
+          }
+        });
+      }
+      animationNavbar();
+    </script>
+  </body>
 </html>

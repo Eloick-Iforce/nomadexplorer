@@ -19,25 +19,9 @@
     {% endblock %}
   </head>
   <body>
-    <script>
-      //animation nav bar
-      function animationNavbar() {
-        const nav = document.querySelector("#nav");
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 20) {
-            nav.classList.add("nav-active");
-          } else {
-            nav.classList.remove("nav-active");
-          }
-        });
-      }
-      animationNavbar();
-    </script>
-
     <nav id="nav" class="fixed top-0 w-full h-[72px]">
       <div class="flex justify-between items-center text-white container">
-        <a href="#" role="button" class="flex items-center">
+        <a href="{{ path('home') }}" role="button" class="flex items-center">
           <img
             src="{{ asset('images/logo-nomadlist.svg') }}"
             alt="logo nomadlist"
@@ -49,12 +33,12 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Accueil</a>
+            <a href="{{ path('home') }}">Accueil</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Trouvez un voyage</a>
+            <a href="{{ path('app_destination_index') }}">Trouvez un voyage</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
@@ -71,10 +55,10 @@
     </nav>
     <main class="container">{% block body %} {% endblock %}</main>
 
-    <footer class="pt-12 border-t border-[#5D666E]">
+    <footer class="pt-12 border-t border-[#5D666E] mt-12">
       <div class="container">
         <div class="flex justify-center items-center w-full">
-          <a href="#" role="button" class="flex items-center">
+          <a href="{{ path('home') }}" role="button" class="flex items-center">
             <img
               src="{{ asset('images/logo-nomadlist.svg') }}"
               alt="logo nomadlist"
@@ -89,12 +73,12 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Acceuil</a>
+            <a href="{{ path('home') }}">Acceuil</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Trouver un voyage</a>
+            <a href="{{ path('app_destination_index') }}">Trouver un voyage</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
@@ -124,5 +108,21 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      //animation nav bar
+      function animationNavbar() {
+        const nav = document.querySelector("#nav");
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 20) {
+            nav.classList.add("nav-active");
+          } else {
+            nav.classList.remove("nav-active");
+          }
+        });
+      }
+      animationNavbar();
+    </script>
   </body>
 </html>

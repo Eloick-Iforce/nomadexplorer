@@ -7,11 +7,11 @@ module.exports = {
       padding: "2rem",
     },
     extend: {
+      colors: {
+        mainColor: "#1B2631",
+      },
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
-      },
-      colors: {
-        body: "#1B2631",
       },
     },
   },

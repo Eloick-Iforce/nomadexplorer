@@ -6,12 +6,20 @@
 
 @layer base{
     body{
-        @apply font-Poppins bg-body h-full;
+        @apply font-Poppins bg-mainColor h-full;
     }
 }
 
 @layer components{
     .gradient{
         @apply text-transparent bg-clip-text bg-gradient-to-br from-blue-500 via-purple-600 to-orange-500;
+    }
+
+    .btn-gradient{
+        @apply bg-gradient-to-br from-blue-500 via-purple-600 to-orange-500 rounded-xl;
+    }
+
+    .input-checkbox{
+        @apply w-6 h-6 mr-5 ml-2;
     }
 }

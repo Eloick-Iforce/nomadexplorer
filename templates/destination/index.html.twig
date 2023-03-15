@@ -1,7 +1,34 @@
-{% extends 'base.html.twig' %} {% block title %}Destination index{% endblock %}
+{% extends 'base.html.twig' %} 
+{% block title %}Destination index{% endblock %}
 {% block body %}
-<h1 class="bg-red-500">Destination index</h1>
 
+
+<h1 class="text-white font-bold text-6xl mt-52">Circuit les plus <span class="gradient">appréciers</span></h1>
+
+<div class="flex justify-around mt-16">
+  <img
+      class="w-96 h-96 rounded-3xl"
+      src="{{ asset('images/image-test.jpg') }}"
+      alt="image test"
+  />
+
+  <img
+      class="w-96 h-96 rounded-3xl"
+      src="{{ asset('images/image-test.jpg') }}"
+      alt="image test"
+  />
+  
+  <img
+      class="w-96 h-96 rounded-3xl"
+      src="{{ asset('images/image-test.jpg') }}"
+      alt="image test"
+  />
+</div>
+
+<h1 class="text-white font-bold text-6xl mt-40">Liste des <span class="gradient">circuits</span></h1>
+<div>
+
+</div>
 <table class="table">
   <thead>
     <tr>

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    @apply font-Poppins bg-mainColor h-full text-white;
+  }
+}
+
+@layer components {
+  .gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-blue-500 via-purple-600 to-orange-500;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-br from-blue-500 via-purple-600 to-orange-500 rounded-xl;
+  }
+
+  .input-checkbox {
+    @apply w-6 h-6 mr-5 ml-2;
+  }
+
+  .btn-bleu {
+    @apply bg-bleu_btn rounded-xl p-4;
+  }
+  .btn-rouge {
+    @apply bg-rouge_btn rounded-xl p-4;
+  }
+  .commentaire-bg {
+    @apply bg-gradient-to-r from-blue-500 to-orange-500 rounded-xl;
+  }
+
+  .informations-title {
+    @apply font-bold mb-1 text-2xl md:text-3xl;
+  }
+}
+
+/* Animation nav */
+.nav-active {
+  transition: all 0.2s ease;
+  background-color: #368bee;
+}

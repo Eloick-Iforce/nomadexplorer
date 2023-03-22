@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %} {% block title %}Voyages | Nomad Explorer {%
+    endblock %} {% block body %} {# Title page #}
+    <h1 class="text-white font-bold text-4xl mt-24 lg:text-5xl">
+      Les circuits les plus 
+      <span class="gradient">appréciés</span>
+    </h1>
+    
+    {# Bests tours #}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+      {% for voyage in voyages|slice(0, 3) %}
+      <a
+        {# href="{{ path('app_voyage_show', { id: voyage.id }) }}" #}
+        href="#"
+        class="h-[200px] md:h-[450px] rounded-lg"
+      >
+        <div
+          style="
+            background-image: url('{{ voyage.image }}');
+          "
+          class="flex items-center justify-center rounded-lg w-full h-full bg-cover bg-center"
+        >
+          <h3 class="text-white text-4xl font-bold">{{ voyage.title }}</h3>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    
+    {# All tours #}
+    <h1 class="text-white font-bold text-4xl mt-40 mb-12 lg:text-5xl">
+      Liste des
+      <span class="text-blueTitle">circuits</span>
+    </h1>
+    
+        <div class="flex flex-col lg:flex-row">
+            {# <div class="flex flex-row pb-8 border-r-0 border-b justify-between border-solid border-grey lg:flex-col lg:border-r lg:w-1/5 lg:pl-5 lg:pb-0 lg:border-b-0 lg:flex-nowrap lg:gap-5 lg:justify-start">
+                {% for index, filtre in filtres|batch(3) %}
+                <div class="flex flex-col gap-2">
+                        {% set categories = [] %}
+                        {% for f in filtre %}
+                            {% if f.categorie not in categories %}
+                                <h2 class="font-bold text-3xl mb-2 text-center lg:text-left">{{ f.categorie }}</h2>
+                                {% set categories = categories + [f.categorie] %}
+                            {% endif %}
+                            <div class="flex items-center">
+                                <input type="checkbox" id="{{ f.categorie }}-{{ f.nom }}" class="input-checkbox">
+                                <label for="{{ f.categorie }}-{{ f.nom }}">{{ f.nom }}</label>
+                            </div>
+                        {% endfor %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="hidden w-36 h-12 btn-gradient font-semibold mx-auto mt-7 mb-9 lg:mb-0 lg:inline">Découvrir</button>
+            </div>
+              <button type="submit" class="w-36 h-12 btn-gradient font-semibold inline mx-auto mt-7 mb-9 lg:hidden">Découvrir</button> #}
+    
+    
+            {# <div class="w-full lg:w-4/5 lg:px-7">
+                <h3 class="text-lg my-7 text-gray-500 italic ml-7 text-left lg:mt-0 lg:mb-7">{{ voyages|length }} résultats</h3>
+                <div class="flex flex-col gap-8">
+                {% for location in locations %}
+                    <a href="{{ path('app_voyage_show', {'id': voyage.id}) }}"><img src="uploads/{{ voyage.images[0].name }}" alt="image test" class="w-full h-96 rounded-4xl bg-cover"/></a>
+                {% endfor %}
+                </div>
+                <div class="flex content-center">
+                    <button type="submit" class="w-36 h-12 btn-gradient font-semibold inline mx-auto mt-12">Voir plus</button>
+                </div>
+    
+            </div> #}
+        </div>
+    {% endblock %}
+    

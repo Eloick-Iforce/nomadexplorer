@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %} {% block body %}
+<div class="flex flex-col items-center justify-center h-full py-12">
+  {% if app.user %}
+  <div class="mb-3">
+    <p class="bg-green-400 rounded-md text-white py-4 px-12">
+      Tu es déjà connecté en tant que {{ app.user.userIdentifier }}
+    </p>
+    <a
+      class="inline-block mt-6 text-white bg-red-500 rounded-md px-6 py-3"
+      href="{{ path('app_logout') }}"
+      >Se déconecter</a
+    >
+  </div>
+  {% else %}
+  <form
+    method="post"
+    class="flex flex-col gap-y-[20px] w-full h-full max-w-[500px]"
+  >
+    <h2 class="text-4xl font-bold text-white">Connecte-toi !</h2>
+    <div>
+      <label class="block font-bold mb-3 text-white" for="inputPseudo"
+        >Pseudo*</label
+      >
+      <input
+        type="text"
+        value="{{ last_username }}"
+        name="pseudo"
+        id="inputPseudo"
+        class="form-control text-black bg-white w-full rounded-md px-4 h-[52px] py-2 outline-black"
+        autocomplete="username"
+        required
+        autofocus
+      />
+    </div>
+
+    <div>
+      <label class="block font-bold mb-3 text-white" for="inputPassword"
+        >Mot de passe*</label
+      >
+      <input
+        type="password"
+        name="password"
+        id="inputPassword"
+        class="form-control text-black bg-white w-full rounded-md px-4 h-[52px] py-2 outline-black"
+        autocomplete="current-password"
+        required
+      />
+      {% if error %}
+      <div class="text-red-400">
+        <p class="text-red-500 mt-3">
+          {{ error.messageKey|trans(error.messageData, 'security') }}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div
+      class="flex items-center flex-col gap-y-6 mt-6 sm:items-center sm:flex-row"
+    >
+      <input
+        class="text-red-400"
+        type="hidden"
+        name="_csrf_token"
+        value="{{ csrf_token('authenticate') }}"
+      />
+
+      <div
+        class="flex items-center flex-col gap-y-6 sm:items-center sm:flex-row"
+      >
+        <button
+          class="text-white inline-block btn-gradient rounded-lg px-12 py-3"
+        >
+          Se connecter
+        </button>
+        <a class="sm:ml-12 text-[#F7FAFC]" href="#">Créer un compte</a>
+      </div>
+    </div>
+
+    {# Se souvenir de moi #}
+    <div class="checkbox mb-3">
+      <label>
+        <input class="text-white mr-4" type="checkbox" name="_remember_me" />Se
+        souvenir de moi
+      </label>
+    </div>
+
+    {% endif %}
+  </form>
+</div>
+{% endblock %}

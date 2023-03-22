@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %} {% block body %}
+<header style="margin-top: 72px" class="py-12 text-white z-10">
+  <div class="flex flex-col gap-x-6 gap-y-12 items-center lg:flex-row">
+    <div class="lg:w-6/12">
+      <h2 class="font-bold text-4xl md:leading-[55px] md:text-5xl">
+        Trouvez le meilleur itinéraire de voyage possible avec
+        <span class="gradient">NomadExplorer</span>
+      </h2>
+      <p class="my-6 text-[#F7FAFC]">
+        A flexible, easy-to-use template that will scale with your business. 33+
+        pre-build and customizable sections for product pages, pricing pages,
+        landing pages, and more.d
+      </p>
+      <a
+        href="{{ path('home') }}"
+        class="inline-block btn-gradient rounded-lg px-12 py-3"
+        >Découvrir</a
+      >
+    </div>
+
+    <div class="w-full lg:w-6/12">
+      <img
+        class="w-full"
+        src="{{ asset('images/header-illustration.png') }}"
+        alt="avion illustration"
+      />
+    </div>
+  </div>
+</header>
+
+<section class="container py-[100px] md:py-[170px]">
+  <h2
+    class="font-bold text-4xl text-white text-center mb-12 md:mb-24 md:text-5xl"
+  >
+    NomadExplorer c’est quoi ?
+  </h2>
+
+  <div class="flex flex-col gap-6 items-center lg:flex-row">
+    <div class="w-full lg:w-6/12">
+      <img
+        class="rounded-md max-h-[250px] min-w-full object-cover object-center lg:max-h-none"
+        src="{{ asset('images/illustration-2.png') }}"
+        alt="illustration 2"
+      />
+    </div>
+
+    <div class="lg:w-6/12">
+      <h3 class="font-bold text-3xl text-[#368BEE] mb-12 md:text-4xl">
+        Trouvez le meilleur ititinéraire de voyage pour vous faire vibrer
+      </h3>
+      <p class="text-[#F7FAFC]">
+        Lorem ipsum dolor sit amet consectetur. Donec volutpat aliquam nunc nec.
+        Volutpat vitae nulla eu scelerisque eget ipsum aliquet. Congue
+        pellentesque viverra euismod leo et. Viverra posuere tortor dictum
+        scelerisque est fringilla. nec. Volutpat vitae nulla eu scelerisque eget
+        ipsum aliquet. Congue pellentesque viverra euismod leo et. Viverra
+        posuere tortor dictum scelerisque est fringilla.
+        <br />
+        <br />
+        nec. Volutpat vitae nulla eu scelerisque eget ipsum aliquet. Congue
+        pellentesque viverra euismod leo et. Viverra posuere tortor dictum
+        scelerisque est fringilla.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="container pb-[100px] md:pb-[150px]">
+  <h2
+    class="font-bold text-3xl text-white text-center mb-12 md:mb-24 md:text-5xl"
+  >
+    Fonctionnalités
+  </h2>
+
+  <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+    <div class="flex gap-7 text-white">
+      <img src="{{ asset('images/icon-check.svg') }}" alt="check icon" />
+      <div>
+        <h3 class="text-xl font-bold">Trouve l'itinéraire partfait</h3>
+        <p class="text-sm mt-2 text-[#F7FAFC]">
+          Voyage dans le globol avec les meilleurs iténéaire possibles
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-7 text-white">
+      <img src="{{ asset('images/icon-check.svg') }}" alt="check icon" />
+      <div>
+        <h3 class="text-xl font-bold">Trouve l'itinéraire partfait</h3>
+        <p class="text-sm mt-2 text-[#F7FAFC]">
+          Voyage dans le globol avec les meilleurs iténéaire possibles
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-7 text-white">
+      <img src="{{ asset('images/icon-check.svg') }}" alt="check icon" />
+      <div>
+        <h3 class="text-xl font-bold">Trouve l'itinéraire partfait</h3>
+        <p class="text-sm mt-2 text-[#F7FAFC]">
+          Voyage dans le globol avec les meilleurs iténéaire possibles
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside
+  class="flex flex-col items-center justify-center text-center bg-[#22303E] py-12 rounded-md"
+>
+  <h2 class="font-bold text-white text-3xl md:text-5xl">
+    Commencez dès maintenant !
+  </h2>
+  <p class="my-6 text-[#F7FAFC] mx-12">
+    Voir les meilleurs itinitinéraires de voyage possible à travers le globe !
+  </p>
+  <a
+    href="{{ path('home') }}"
+    class="text-white inline-block btn-gradient rounded-lg px-12 py-3"
+    >Découvrir</a
+  >
+</aside>
+{% endblock %}

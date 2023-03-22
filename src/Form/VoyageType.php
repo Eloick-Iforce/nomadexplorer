@@ -12,7 +12,9 @@ class VoyageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('object')
+            ->add('title')
+            ->add('description')
+            ->add('image')
         ;
     }
 

@@ -43,7 +43,7 @@ class VoyageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
 
-            return $this->redirectToRoute('app_voyage_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_voyage_admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('voyage/new.html.twig', [
@@ -60,7 +60,7 @@ class VoyageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_voyage_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_voyage_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Voyage $voyage, VoyageRepository $voyageRepository): Response
     {
         $form = $this->createForm(VoyageType::class, $voyage);
@@ -69,7 +69,7 @@ class VoyageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
 
-            return $this->redirectToRoute('app_voyage_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_voyage_admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('voyage/edit.html.twig', [
@@ -85,6 +85,6 @@ class VoyageController extends AbstractController
             $voyageRepository->remove($voyage, true);
         }
 
-        return $this->redirectToRoute('app_voyage_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_voyage_admin', [], Response::HTTP_SEE_OTHER);
     }
 }

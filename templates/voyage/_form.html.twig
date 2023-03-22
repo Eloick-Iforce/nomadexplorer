@@ -1,4 +1,25 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] w-[500px] h-full mx-auto'
+
+}}) }}
+{{ form_row(form.title, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+}}) }}
+{{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+}}) }}
+{{ form_row(form.image, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+}}) }}
+<button
+  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  type="submit"
+>
+  {{ button_label|default('Sauvegarder') }}
+</button>
+<a
+  class="bg-red-500 py-2 text-center font-bold px-4 rounded"
+  href="{{ path('app_voyage_admin') }}"
+  class="font-bold"
+  >Annuler</a
+>
 {{ form_end(form) }}

@@ -1,25 +1,152 @@
-{{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] w-[500px] h-full mx-auto'
+{# {% set data = 'John' %} #}
+
+{{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] max-[520px] h-full mx-auto'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }}) }}
 {{ form_row(form.title, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
 
-}}) }}
-{{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }}) }}
 {{ form_row(form.image, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }}) }}
+{{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+{{ form_row(form.object, {'attr': {'class': 'hidden', 'value': data|json_encode
+
+
+
+
+
+
+
+
+
+
+}}) }}
+<div class="h-[440px]" id="map"></div>
+
 <button
   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
   type="submit"
 >
   {{ button_label|default('Sauvegarder') }}
 </button>
+
 <a
   class="bg-red-500 py-2 text-center font-bold px-4 rounded"
   href="{{ path('app_voyage_admin') }}"
   class="font-bold"
-  >Annuler</a
 >
+  Annuler
+</a>
+
 {{ form_end(form) }}
+
+<script>
+  const inputHidden = document.querySelector("#voyage_object");
+  let marker = null;
+  let data = {};
+
+  function initMap() {
+    // On crée une nouvelle instance de la carte
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 48.8566, lng: 2.3522 }, // On centre la carte sur Paris
+      zoom: 12, // On définit le zoom initial à 12
+    });
+
+    // On ajoute un écouteur d'événement pour le clic sur la carte
+    map.addListener("click", (event) => {
+      // Si un marqueur existe déjà, on le supprime
+      if (marker !== null) {
+        marker.setMap(null);
+        marker = null;
+      }
+
+      // On crée un nouveau marqueur à l'endroit du clic
+      marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+      });
+
+      // On ajoute un écouteur d'événement pour le clic sur le marqueur
+      marker.addListener("click", () => {
+        // On supprime le marqueur
+        marker.setMap(null);
+        marker = null;
+        // On supprime les données associées
+        data = {};
+        console.log("Données supprimées");
+      });
+
+      // On stocke les données dans la variable data
+      data = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      inputHidden.value = JSON.stringify(data);
+      console.log(inputHidden.value);
+      console.log("Données enregistrées : ", data);
+    });
+  }
+</script>

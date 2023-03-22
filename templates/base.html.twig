@@ -39,7 +39,7 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="{{ path('home') }}">Voir les voyages</a>
+            <a href="{{ path('voyages') }}">Voir les voyages</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
@@ -142,5 +142,11 @@
       }
       animationNavbar();
     </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC53kzUhbVD2iOqrf5wAKV658hsInrKzjI&callback=initMap"
+      async
+      defer
+    ></script>
   </body>
 </html>

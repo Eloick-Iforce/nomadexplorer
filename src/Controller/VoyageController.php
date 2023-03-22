@@ -6,6 +6,7 @@ use App\Entity\Voyage;
 use App\Form\VoyageType;
 use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +37,10 @@ class VoyageController extends AbstractController
     #[Route('/new', name: 'app_voyage_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VoyageRepository $voyageRepository): Response
     {
+        // $formData = $request->request->get('form');
+        // $jsonData = $formData['data'];
+        // $data = json_decode($jsonData, true);
+
         $voyage = new Voyage();
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
@@ -47,6 +52,7 @@ class VoyageController extends AbstractController
         }
 
         return $this->renderForm('voyage/new.html.twig', [
+            'data' => "",
             'voyage' => $voyage,
             'form' => $form,
         ]);
@@ -65,18 +71,19 @@ class VoyageController extends AbstractController
     {
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
-
+    
             return $this->redirectToRoute('app_voyage_admin', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->renderForm('voyage/edit.html.twig', [
             'voyage' => $voyage,
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_voyage_delete', methods: ['POST'])]
     public function delete(Request $request, Voyage $voyage, VoyageRepository $voyageRepository): Response

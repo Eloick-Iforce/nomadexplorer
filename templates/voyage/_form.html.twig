@@ -18,8 +18,18 @@
 
 
 
+
+
+
+
+
 }}) }}
 {{ form_row(form.title, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
 
 
 
@@ -56,6 +66,11 @@
 
 
 
+
+
+
+
+
 }}) }}
 {{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
 
@@ -71,8 +86,18 @@
 
 
 
+
+
+
+
+
 }}) }}
 {{ form_row(form.object, {'attr': {'class': 'hidden', 'value': data|json_encode
+
+
+
+
+
 
 
 
@@ -105,48 +130,28 @@
 
 <script>
   const inputHidden = document.querySelector("#voyage_object");
-  let marker = null;
+  let markers = [];
   let data = {};
 
   function initMap() {
     // On crée une nouvelle instance de la carte
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 48.8566, lng: 2.3522 }, // On centre la carte sur Paris
-      zoom: 12, // On définit le zoom initial à 12
-    });
 
     // On ajoute un écouteur d'événement pour le clic sur la carte
-    map.addListener("click", (event) => {
-      // Si un marqueur existe déjà, on le supprime
-      if (marker !== null) {
-        marker.setMap(null);
-        marker = null;
-      }
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 48.8566, lng: 2.3522 },
+      zoom: 12,
+    });
 
-      // On crée un nouveau marqueur à l'endroit du clic
-      marker = new google.maps.Marker({
+    map.addListener("click", (event) => {
+      const marker = new google.maps.Marker({
         position: event.latLng,
         map: map,
       });
 
-      // On ajoute un écouteur d'événement pour le clic sur le marqueur
-      marker.addListener("click", () => {
-        // On supprime le marqueur
-        marker.setMap(null);
-        marker = null;
-        // On supprime les données associées
-        data = {};
-        console.log("Données supprimées");
-      });
-
-      // On stocke les données dans la variable data
-      data = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-      };
-      inputHidden.value = JSON.stringify(data);
+      markers.push({ lat: event.latLng.lat(), lng: event.latLng.lng() }); // Ajoute le marqueur dans le tableau
+      console.log("Données ajoutées", markers);
+      inputHidden.value = JSON.stringify(markers);
       console.log(inputHidden.value);
-      console.log("Données enregistrées : ", data);
     });
   }
 </script>

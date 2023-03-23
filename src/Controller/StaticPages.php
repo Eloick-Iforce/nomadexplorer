@@ -45,9 +45,6 @@ class StaticPages extends AbstractController
     {
         $points = json_decode($voyage->getObject());
 
-
-var_dump($points);
-
         return $this->render('voyage.html.twig', [
             'voyage' => $voyage,
             'points' => $points,

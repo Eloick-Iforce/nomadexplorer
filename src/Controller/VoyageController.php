@@ -37,10 +37,6 @@ class VoyageController extends AbstractController
     #[Route('/new', name: 'app_voyage_new', methods: ['GET', 'POST'])]
     public function new(Request $request, VoyageRepository $voyageRepository): Response
     {
-        // $formData = $request->request->get('form');
-        // $jsonData = $formData['data'];
-        // $data = json_decode($jsonData, true);
-
         $voyage = new Voyage();
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
@@ -51,10 +47,14 @@ class VoyageController extends AbstractController
             return $this->redirectToRoute('app_voyage_admin', [], Response::HTTP_SEE_OTHER);
         }
 
+            // Définir une valeur par défaut pour la variable "points"
+    $points = '[]';
+    
         return $this->renderForm('voyage/new.html.twig', [
             'data' => "",
             'voyage' => $voyage,
             'form' => $form,
+            'points' => $points,
         ]);
     }
 
@@ -72,7 +72,7 @@ class VoyageController extends AbstractController
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
         $points = $voyage->getObject();
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
     

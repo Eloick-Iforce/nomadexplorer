@@ -121,16 +121,14 @@
 {{ form_end(form) }}
 
 <script>
-	const inputHidden = document.querySelector("#voyage_object");
-let markers = [];
-let data = {};
-
-
-var points = JSON.parse("{{ points|raw }}");
-
+	{% if points is not empty %}
+var points = {{ points|json_encode|raw }};
+{% else %}
+var points = [];{% endif %}let markers = [];
 
 function initMap() {
-var map = new google.maps.Map(document.getElementById('map'), {
+var inputHidden = document.querySelector("#voyage_object");
+var map = new google.maps.Map(document.getElementById("map"), {
 zoom: 2,
 center: {
 lat: 0,
@@ -147,10 +145,11 @@ lng: points[i].lng
 map: map
 });
 }
+
 map.addListener("click", (event) => {
 const marker = new google.maps.Marker({position: event.latLng, map: map});
 
-markers.push({lat: event.latLng.lat(), lng: event.latLng.lng()}); // Ajoute le marqueur dans le tableau
+markers.push({lat: event.latLng.lat(), lng: event.latLng.lng()});
 console.log("Données ajoutées", markers);
 inputHidden.value = JSON.stringify(markers);
 console.log(inputHidden.value);

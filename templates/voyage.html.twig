@@ -60,9 +60,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																		          site fast & scalable. Building a website from scratch just isn't
-																																																																																																		          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																		          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -79,9 +79,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																		          site fast & scalable. Building a website from scratch just isn't
-																																																																																																		          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																		          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -98,9 +98,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																		          site fast & scalable. Building a website from scratch just isn't
-																																																																																																		          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																		          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -125,14 +125,17 @@
 	</div>
 
 	<script>
-		var points = {{ points|json_encode|raw }};
+		{% if points is not empty %}
+var points = {{ points|json_encode|raw }};
+{% else %}
+var points = [];{% endif %}
 
 function initMap() {
 var map = new google.maps.Map(document.getElementById("map"), {
-zoom: 12,
+zoom: 2,
 center: {
-lat: 48.8566,
-lng: 2.3522
+lat: 0,
+lng: 0
 }
 });
 

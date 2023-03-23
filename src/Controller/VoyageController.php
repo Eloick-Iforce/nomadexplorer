@@ -30,7 +30,7 @@ class VoyageController extends AbstractController
 
         // Passage des données de localisation à Twig pour les afficher
         return $this->render('voyage/index.html.twig', [
-            'voyages' => $voyageRepository->findAll(),
+            'voyages' => $voyageRepository->findBy([], ['id' => 'DESC']),
         ]); 
     }
 

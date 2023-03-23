@@ -125,7 +125,7 @@
 var points = {{ points|json_encode|raw }};
 {% else %}
 var points = [];{% endif %}let markers = [];
-
+console.log(points)
 function initMap() {
 var inputHidden = document.querySelector("#voyage_object");
 var map = new google.maps.Map(document.getElementById("map"), {

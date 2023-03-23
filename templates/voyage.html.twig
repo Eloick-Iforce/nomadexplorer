@@ -131,25 +131,31 @@ var points = {{ points|json_encode|raw }};
 var points = [];{% endif %}
 
 function initMap() {
-var map = new google.maps.Map(document.getElementById("map"), {
-zoom: 2,
-center: {
-lat: 0,
-lng: 0
-}
-});
+  var map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 2,
+    center: {
+      lat: 0,
+      lng: 0
+    }
+  });
 
-for (var i = 0; i < points.length; i++) {
-var marker = new google.maps.Marker({
-position: {
-lat: points[i].lat,
-lng: points[i].lng
-},
-map: map
-});
+  var bounds = new google.maps.LatLngBounds(); // Nouvel objet bounds
+
+  for (var i = 0; i < points.length; i++) {
+    var marker = new google.maps.Marker({
+      position: {
+        lat: points[i].lat,
+        lng: points[i].lng
+      },
+      map: map
+    });
+
+    bounds.extend(marker.getPosition()); // Ajout du marker aux limites de l'objet bounds
+  }
+
+  map.fitBounds(bounds); // Ajustement de la carte aux limites de l'objet bounds
 }
 
-}
 
 window.onload = function () {
 initMap();

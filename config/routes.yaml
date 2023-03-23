@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+# routes.yaml
+
+app_save_data:
+    path: /send-json
+    methods: ['POST']
+    controller: App\Controller\VoyageController::saveDataAction

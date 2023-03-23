@@ -9,8 +9,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
       {% for voyage in voyages|slice(0, 3) %}
       <a
-        {# href="{{ path('app_voyage_show', { id: voyage.id }) }}" #}
-        href="#"
+        href="{{ path('app_voyage_show', { id: voyage.id }) }}"
         class="h-[200px] md:h-[450px] rounded-lg"
       >
         <div

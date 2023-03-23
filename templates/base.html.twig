@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Accueil | Nomad Explorer {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
@@ -38,7 +39,7 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="{{ path('home') }}">Voir les voyages</a>
+            <a href="{{ path('voyages') }}">Voir les voyages</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
@@ -141,5 +142,11 @@
       }
       animationNavbar();
     </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC53kzUhbVD2iOqrf5wAKV658hsInrKzjI&callback=initMap"
+      async
+      defer
+    ></script>
   </body>
 </html>

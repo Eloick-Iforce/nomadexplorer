@@ -1,4 +1,162 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] max-[520px] h-full mx-auto'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+{{ form_row(form.title, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+{{ form_row(form.image, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+{{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+{{ form_row(form.object, {'attr': {'class': 'hidden', 'value': data|json_encode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}}) }}
+<div class="h-[440px]" id="map"></div>
+
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+	{{ button_label|default('Sauvegarder') }}
+</button>
+
+<a class="bg-red-500 py-2 text-center font-bold px-4 rounded" href="{{ path('app_voyage_admin') }}" class="font-bold">
+	Annuler
+</a>
+
 {{ form_end(form) }}
+
+<script>
+	{% if points is not empty %}
+var points = {{ points|json_encode|raw }};
+{% else %}
+var points = [];{% endif %}let markers = [];
+console.log(points)
+function initMap() {
+var inputHidden = document.querySelector("#voyage_object");
+var map = new google.maps.Map(document.getElementById("map"), {
+zoom: 2,
+center: {
+lat: 0,
+lng: 0
+}
+});
+
+for (var i = 0; i < points.length; i++) {
+var marker = new google.maps.Marker({
+position: {
+lat: points[i].lat,
+lng: points[i].lng
+},
+map: map
+});
+}
+
+map.addListener("click", (event) => {
+const marker = new google.maps.Marker({position: event.latLng, map: map});
+
+markers.push({lat: event.latLng.lat(), lng: event.latLng.lng()});
+console.log("Données ajoutées", markers);
+inputHidden.value = JSON.stringify(markers);
+console.log(inputHidden.value);
+});
+}
+
+window.onload = function () {
+initMap();
+}
+</script>

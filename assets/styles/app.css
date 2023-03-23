@@ -57,3 +57,15 @@
   max-width: 1100px;
   margin: auto;
 }
+
+/* Overlay */
+.relative:hover::before {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.relative:hover h3 {
+  transform: translateY(-50%);
+  transition: transform 0.3s ease-in-out;
+}
+

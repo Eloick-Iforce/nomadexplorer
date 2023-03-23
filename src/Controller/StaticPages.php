@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Voyage;
+use App\Form\VoyageType;
 use App\Repository\VoyageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,4 +40,15 @@ class StaticPages extends AbstractController
         ]); 
     }
 
+    #[Route('/voyage/{id}', name: 'app_voyage_show', methods: ['GET'])]
+    public function show(Voyage $voyage): Response
+    {
+        $object = $voyage->getObject();
+        $points = json_decode($object, true);
+
+        return $this->render('voyage.html.twig', [
+            'points' => $points,
+            'voyage' => $voyage,
+        ]);
+    }
 }

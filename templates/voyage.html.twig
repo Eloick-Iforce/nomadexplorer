@@ -1,0 +1,219 @@
+{% extends 'base.html.twig' %} {% block title %}Parcours Etats-Unis{% endblock
+%} {% block body %}
+<h1 class="text-white font-bold text-4xl my-12 md:text-5xl">
+  Parcours <span class="text-blueTitle">{{ voyage.title }}</span>
+</h1>
+
+<div class="h-[557px] rounded-3xl full" id="map"></div>
+<h2 class="font-bold text-3xl mb-2 text-center mt-28 md:text-4xl">
+  Plus <span class="gradient">d'infos</span>
+</h2>
+<p class="text-center text-base text-[#c2c2c2] -mt-2 md:text-md">
+  Vous retrouvez les détails complet du voyage ci-dessus
+</p>
+
+<div class="flex flex-wrap justify-center gap-8 mt-8 md:gap-16 md:flex-row">
+  <div
+    class="bg-checkbox w-52 px-6 py-4 rounded-lg flex flex-col justify-center gap-[0.500rem] md:w-60"
+  >
+    <div class="p-2 rounded-4xl">
+      <img
+        class="w-14 h-14 bg-[#368BEE] p-2 rounded-full mx-auto"
+        src="{{ asset('images/moneybag.svg') }}"
+        alt="image test"
+      />
+    </div>
+    <p class="font-bold text-5xl text-center lg:text-6xl">2454€</p>
+    <p class="text-md text-center">Prix</p>
+  </div>
+
+  <div
+    class="bg-checkbox w-52 px-6 py-4 rounded-lg flex flex-col justify-center gap-[0.500rem] md:w-60"
+  >
+    <div class="p-2 rounded-4xl">
+      <img
+        class="w-14 h-14 bg-[#368BEE] p-2 rounded-full mx-auto"
+        src="{{ asset('images/pin.svg') }}"
+        alt="image test"
+      />
+    </div>
+    <p class="font-bold text-5xl text-center md:text-6xl">4</p>
+    <p class="text-md text-center">Locations</p>
+  </div>
+
+  <div
+    class="bg-checkbox w-52 px-6 py-4 rounded-lg flex flex-col justify-center gap-[0.500rem] md:w-60"
+  >
+    <div class="p-2 rounded-4xl">
+      <img
+        class="w-14 h-14 bg-[#368BEE] p-2 rounded-full mx-auto"
+        src="{{ asset('images/clock.svg') }}"
+        alt="image test"
+      />
+    </div>
+    <p class="font-bold text-5xl text-center md:text-6xl">14</p>
+    <p class="text-md text-center">Jours</p>
+  </div>
+
+  <div
+    class="bg-checkbox w-52 px-6 py-4 rounded-lg flex flex-col justify-center gap-[0.500rem] md:w-60"
+  >
+    <div class="p-2 rounded-4xl">
+      <img
+        class="w-14 h-14 bg-[#368BEE] p-2 rounded-full mx-auto"
+        src="{{ asset('images/person.svg') }}"
+        alt="image test"
+      />
+    </div>
+    <p class="font-bold text-5xl text-center md:text-6xl">4</p>
+    <p class="text-md text-center">Personnes</p>
+  </div>
+</div>
+
+<h1 class="font-bold text-4xl mt-40 mb-14 md:text-5xl">Commentaires</h1>
+<div class="flex flex-col gap-11">
+  <div class="relative -z-10">
+    <div class="absolute -inset-1 commentaire-bg"></div>
+    <div class="relative flex p-2 items-center bg-checkbox rounded-xl md:p-3">
+      <img
+        class="w-44 h-44 rounded-lg"
+        src="{{ asset('images/commentaire.png') }}"
+        alt="image test"
+      />
+      <div class="ml-4">
+        <p class="text-base font-extralight md:pr-24 lg:text-[22px]">
+          <span class="font-bold">“</span>GrowKit has what I need to build a
+          site fast & scalable. Building a website from scratch just isn't
+          necessary anymore. Vive la France et surtout vive la République, vous
+          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span
+            class="font-bold"
+            >”</span
+          >
+        </p>
+        <p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
+        <p class="font-light mt-2 text-sm md:text-lg md:mt-4">
+          Sr. Product Designer
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative -z-10">
+    <div class="absolute -inset-1 commentaire-bg"></div>
+    <div class="relative flex p-2 items-center bg-checkbox rounded-xl md:p-3">
+      <img
+        class="w-44 h-44 rounded-lg"
+        src="{{ asset('images/commentaire.png') }}"
+        alt="image test"
+      />
+      <div class="ml-4">
+        <p class="text-base font-extralight md:pr-24 lg:text-[22px]">
+          <span class="font-bold">“</span>GrowKit has what I need to build a
+          site fast & scalable. Building a website from scratch just isn't
+          necessary anymore. Vive la France et surtout vive la République, vous
+          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span
+            class="font-bold"
+            >”</span
+          >
+        </p>
+        <p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
+        <p class="font-light mt-2 text-sm md:text-lg md:mt-4">
+          Sr. Product Designer
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative -z-10">
+    <div class="absolute -inset-1 commentaire-bg"></div>
+    <div class="relative flex p-2 items-center bg-checkbox rounded-xl md:p-3">
+      <img
+        class="w-44 h-44 rounded-lg"
+        src="{{ asset('images/commentaire.png') }}"
+        alt="image test"
+      />
+      <div class="ml-4">
+        <p class="text-base font-extralight md:pr-24 lg:text-[22px]">
+          <span class="font-bold">“</span>GrowKit has what I need to build a
+          site fast & scalable. Building a website from scratch just isn't
+          necessary anymore. Vive la France et surtout vive la République, vous
+          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span
+            class="font-bold"
+            >”</span
+          >
+        </p>
+        <p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
+        <p class="font-light mt-2 text-sm md:text-lg md:mt-4">
+          Sr. Product Designer
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 class="font-bold text-4xl mt-40 mb-12 md:text-5xl">
+  Ajoutez un commentaire !
+</h1>
+<div class="mb-28">
+  <form class="flex flex-col">
+    <label class="font-bold mb-2 ml-2">Message*</label>
+    <textarea
+      type="text"
+      name="commentaire"
+      class="w-7/12 min-h-[221px] text-black p-3 rounded-md"
+    ></textarea>
+    <button
+      type="submit"
+      class="w-56 h-12 btn-gradient font-semibold inline mt-10"
+    >
+      Découvrir
+    </button>
+  </form>
+</div>
+
+<script>
+  function initMarker(map, position, label, title) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: position,
+      label: label,
+      title: title,
+    });
+    marker.addListener("click", function () {
+      document.getElementById("resultat").innerHTML = this.title;
+    });
+  }
+
+  function initMarkers(map) {
+    var iut = new google.maps.LatLng(48.816475, 7.786471);
+    initMarker(map, iut, "A", "IUT de Haguenau");
+
+    var musee = new google.maps.LatLng(48.815252, 7.789379);
+    initMarker(map, musee, "B", "Musée Alsacien de Haguenau");
+  }
+
+  function initMap() {
+    var iut = new google.maps.LatLng(48.816475, 7.786471);
+
+    var map = new google.maps.Map(document.getElementById("map"), {
+      center: iut,
+      zoom: 15,
+    });
+
+    initMarkers(map);
+  }
+
+  var points = {{ points|json_encode|raw }};
+
+  for (var i = 0; i < points.length; i++) {
+      var marker = new google.maps.Marker({
+          position: { lat: points[i].lat, lng: points[i].lng },
+          map: map
+      });
+  }
+  window.initMap = initMap;
+</script> 
+
+
+
+{% endblock %}

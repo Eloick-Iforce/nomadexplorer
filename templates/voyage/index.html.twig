@@ -1,40 +1,30 @@
-{% extends 'base.html.twig' %}{% block title %}Admin | Nomad Explorer {%
-endblock %}{% block body %}
-<section class="flex flex-col gap-y-3 my-12 text-white">
-  <h2 class="text-3xl font-bold text-white md:text-5xl">
-    Administration des <span class="text-[#548be4]">voyages</span>
-  </h2>
-  <a
-    class="bg-[#348BEF] max-w-fit text-white rounded-md px-4 py-2 inline-block mb-12"
-    href="{{ path('app_voyage_new') }}" 
-    >Créer un nouveau voyage</a
-  >
-  {% for voyage in voyages %}
-  <article
-    class="flex flex-col gap-y-6 justify-between bg-[#22303E] rounded-lg px-4 py-4 md:flex-row md:py-2 md:items-center"
-  >
-    <div class="flex flex-col items-center text-lg font-bold sm:flex-row">
-      <p>{{ voyage.id }}</p>
-      <p class="sm:ml-12">{{ voyage.title }}</p>
-      <p class="text-gray-400 truncate text-ellipsis max-w-[30vw] sm:ml-12">{{ voyage.description }}</p>
-    </div>
+{% extends 'base.html.twig' %}
+{% block title %}Admin | Nomad Explorer
+{%
+endblock %}
+{% block body %}
+	<section class="flex flex-col gap-y-3 my-12 text-white">
+		<h2 class="text-3xl font-bold text-white md:text-5xl">
+			Administration des
+			<span class="text-[#548be4]">voyages</span>
+		</h2>
+		<a class="bg-[#348BEF] max-w-fit text-white rounded-md px-4 py-2 inline-block mb-12" href="{{ path('app_voyage_new') }}">Créer un nouveau voyage</a>
+		{% for voyage in voyages %}
+			<article class="flex flex-col gap-y-6 justify-between bg-[#22303E] rounded-lg px-4 py-4 md:flex-row md:py-2 md:items-center">
+				<div class="flex flex-col items-center text-lg font-bold sm:flex-row">
+					<p>{{ voyage.id }}</p>
+					<p class="sm:ml-12">{{ voyage.title }}</p>
+					<p class="text-gray-400 truncate text-ellipsis max-w-[30vw] sm:ml-12">{{ voyage.description }}</p>
+				</div>
 
-    <div class="flex flex-col items-center gap-6 sm:flex-row">
-      <a
-        class="inline-block bg-[#348BEF] text-white rounded-md px-6 py-2"
-        href="{{ path('app_voyage_edit', { id: voyage.id }) }}"
-        >Modifier</a
-      >
-      <a
-        class="inline-block bg-red-500 text-white rounded-md px-6 py-2"
-        href="{{ path('app_voyage_delete', { id: voyage.id }) }}"
-        href="#"
-        >Supprimer</a
-      >
-    </div>
-  </article>
-  {% else %}
-  <p>Aucun voyage à afficher</p>
-  {% endfor %}
-</section>
+				<div class="flex flex-col items-center gap-6 sm:flex-row">
+					<a class="inline-block bg-gray-200 text-white rounded-md px-6 py-2" href="{{ path('app_voyage_show', { id: voyage.id }) }}">Voir</a>
+					<a class="inline-block bg-[#348BEF] text-white rounded-md px-6 py-2" href="{{ path('app_voyage_edit', { id: voyage.id }) }}">Modifier</a>
+					<a class="inline-block bg-red-500 text-white rounded-md px-6 py-2" href="{{ path('app_voyage_delete', { id: voyage.id }) }}" href="#">Supprimer</a>
+				</div>
+			</article>
+		{% else %}
+			<p>Aucun voyage à afficher</p>
+		{% endfor %}
+	</section>
 {% endblock %}

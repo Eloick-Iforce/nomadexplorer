@@ -3,11 +3,11 @@
 {% endblock
 %}
 {% block body %}
-	<h1 class="text-white font-bold text-4xl my-12 md:text-5xl">
+	<h1 class="text-white font-bold text-4xl mt-12 md:text-5xl">
 		Parcours
 		<span class="text-blueTitle">{{ voyage.title }}</span>
 	</h1>
-
+	<p class="mb-12 mt-2 text-lg text-gray-500">{{voyage.description}}</p>
 	<div class="h-[557px] rounded-3xl full" id="map"></div>
 	<h2 class="font-bold text-3xl mb-2 text-center mt-28 md:text-4xl">
 		Plus
@@ -60,9 +60,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																																          site fast & scalable. Building a website from scratch just isn't
-																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																																												          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																																												          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																																												          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -79,9 +79,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																																          site fast & scalable. Building a website from scratch just isn't
-																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																																												          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																																												          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																																												          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -98,9 +98,9 @@
 				<div class="ml-4">
 					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
 						<span class="font-bold">“</span>GrowKit has what I need to build a
-																																																																																																																          site fast & scalable. Building a website from scratch just isn't
-																																																																																																																          necessary anymore. Vive la France et surtout vive la République, vous
-																																																																																																																          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
+																																																																																																																																												          site fast & scalable. Building a website from scratch just isn't
+																																																																																																																																												          necessary anymore. Vive la France et surtout vive la République, vous
+																																																																																																																																												          entendez ! J'aime le poulet et toi ? Moi j'adore ! C'est cool !<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">Sam Juliens</p>
 					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
@@ -128,32 +128,28 @@
 		{% if points is not empty %}
 var points = {{ points|json_encode|raw }};
 {% else %}
-var points = [];{% endif %}
+var points = [];{% endif %}function initMap() {
+var map = new google.maps.Map(document.getElementById("map"), {
+zoom: 2,
+center: {
+lat: 0,
+lng: 0
+}
+});
 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 2,
-    center: {
-      lat: 0,
-      lng: 0
-    }
-  });
+var bounds = new google.maps.LatLngBounds(); // Nouvel objet bounds
 
-  var bounds = new google.maps.LatLngBounds(); // Nouvel objet bounds
+for (var i = 0; i < points.length; i++) {
+var marker = new google.maps.Marker({
+position: {
+lat: points[i].lat,
+lng: points[i].lng
+},
+map: map
+});
 
-  for (var i = 0; i < points.length; i++) {
-    var marker = new google.maps.Marker({
-      position: {
-        lat: points[i].lat,
-        lng: points[i].lng
-      },
-      map: map
-    });
-
-    bounds.extend(marker.getPosition()); // Ajout du marker aux limites de l'objet bounds
-  }
-
-  map.fitBounds(bounds); // Ajustement de la carte aux limites de l'objet bounds
+bounds.extend(marker.getPosition()); // Ajout du marker aux limites de l'objet bounds
+}map.fitBounds(bounds); // Ajustement de la carte aux limites de l'objet bounds
 }
 
 

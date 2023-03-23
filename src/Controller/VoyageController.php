@@ -72,7 +72,7 @@ class VoyageController extends AbstractController
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
         $points = $voyage->getObject();
-echo $points;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
     

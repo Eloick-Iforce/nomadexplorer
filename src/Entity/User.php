@@ -27,12 +27,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column]
-    private ?float $level = null;
-
-    #[ORM\Column]
-    private ?float $xp = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -120,29 +114,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getLevel(): ?float
-    {
-        return $this->level;
-    }
-
-    public function setLevel(float $level): self
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    public function getXp(): ?float
-    {
-        return $this->xp;
-    }
-
-    public function setXp(float $xp): self
-    {
-        $this->xp = $xp;
-
-        return $this;
     }
 }

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %} {% block body %}
-<header style="margin-top: 72px" class="py-12 text-white">
+<header style="margin-top: 72px" class="py-12 text-white z-10">
   <div class="flex flex-col gap-x-6 gap-y-12 items-center lg:flex-row">
     <div class="lg:w-6/12">
       <h2 class="font-bold text-4xl md:leading-[55px] md:text-5xl">
@@ -12,7 +12,7 @@
         landing pages, and more.d
       </p>
       <a
-        href="{{ path('app_destination_index') }}"
+        href="{{ path('home') }}"
         class="inline-block btn-gradient rounded-lg px-12 py-3"
         >Découvrir</a
       >
@@ -115,7 +115,7 @@
     Voir les meilleurs itinitinéraires de voyage possible à travers le globe !
   </p>
   <a
-    href="{{ path('app_destination_index') }}"
+    href="{{ path('home') }}"
     class="text-white inline-block btn-gradient rounded-lg px-12 py-3"
     >Découvrir</a
   >

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}NomadExplorer - Acceuil{% endblock %}</title>
+    <title>{% block title %}Accueil | Nomad Explorer {% endblock %}</title>
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
@@ -19,7 +19,7 @@
     {% endblock %}
   </head>
   <body>
-    <nav id="nav" class="fixed top-0 w-full h-[72px]">
+    <nav id="nav" class="fixed top-0 w-full h-[72px] z-10">
       <div class="flex justify-between items-center text-white container">
         <a href="{{ path('home') }}" role="button" class="flex items-center">
           <img
@@ -38,22 +38,39 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="{{ path('app_destination_index') }}">Trouvez un voyage</a>
+            <a href="{{ path('home') }}">Voir les voyages</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Contact</a>
+            <a href="{{ path('home') }}">Contact</a>
           </li>
         </ul>
 
-        <div class="hidden gap-6 font-bold lg:flex">
-          <a href="#">Se connecter</a>
-          <a href="#">S'inscrire</a>
+        <div class="hidden gap-6 font-bold lg:flex items-center">
+          {% if app.user %} {% if is_granted('ROLE_ADMIN') %}
+          <a
+            class="bg-red-500 rounded-md px-4 py-3"
+            href="{{ path('app_voyage_admin') }}"
+            >Admin</a
+          >
+          {% endif %}
+
+          <a href="{{ path('app_logout') }}"
+            >Se déconnecter de
+            <span class="font-bold"> {{ app.user.userIdentifier }}</span></a
+          >
         </div>
+        {% else %}
+        <a href="{{ path('app_login') }}">Se connecter</a>
+        {# <a href="#">S'inscrire</a> #}
       </div>
+      {% endif %}
     </nav>
-    <main class="container">{% block body %} {% endblock %}</main>
+
+    <main class="container grow" style="margin-top: 72px">
+      {% block body %}{% endblock %}
+    </main>
 
     <footer class="pt-12 border-t border-[#5D666E] mt-12">
       <div class="container">
@@ -78,22 +95,22 @@
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="{{ path('app_destination_index') }}">Trouver un voyage</a>
+            <a href="{{ path('home') }}">Trouver un voyage</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Contact</a>
+            <a href="{{ path('home') }}">Contact</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Mentions légales</a>
+            <a href="{{ path('home') }}">Mentions légales</a>
           </li>
           <li
             class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
           >
-            <a href="#">Politiques de confitiendalité</a>
+            <a href="{{ path('home') }}">Politiques de confitiendalité</a>
           </li>
         </ul>
 
@@ -101,7 +118,7 @@
           class="flex flex-col items-center justify-between text-sm text-[#F7FAFC] py-12 md:flex-row"
         >
           <p>
-            &copy; Build by Axel Pointud | Sebastien Gross | Eloick Mickiz |
+            &copy; Build by Axel Pointud | Sebastien Gross | Eloïck Mickisz |
             Gabin Chenot
           </p>
           <p>BUT MMI2 - SAE401</p>
@@ -110,7 +127,7 @@
     </footer>
 
     <script>
-      //animation nav bar
+      // animation nav bar
       function animationNavbar() {
         const nav = document.querySelector("#nav");
 

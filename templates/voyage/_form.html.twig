@@ -1,5 +1,3 @@
-{# {% set data = 'John' %} #}
-
 {{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] max-[520px] h-full mx-auto'
 
 
@@ -108,50 +106,58 @@
 
 
 
+
 }}) }}
 <div class="h-[440px]" id="map"></div>
 
-<button
-  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-  type="submit"
->
-  {{ button_label|default('Sauvegarder') }}
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+	{{ button_label|default('Sauvegarder') }}
 </button>
 
-<a
-  class="bg-red-500 py-2 text-center font-bold px-4 rounded"
-  href="{{ path('app_voyage_admin') }}"
-  class="font-bold"
->
-  Annuler
+<a class="bg-red-500 py-2 text-center font-bold px-4 rounded" href="{{ path('app_voyage_admin') }}" class="font-bold">
+	Annuler
 </a>
 
 {{ form_end(form) }}
 
 <script>
-  const inputHidden = document.querySelector("#voyage_object");
-  let markers = [];
-  let data = {};
+	const inputHidden = document.querySelector("#voyage_object");
+let markers = [];
+let data = {};
 
-  function initMap() {
-    // On crée une nouvelle instance de la carte
 
-    // On ajoute un écouteur d'événement pour le clic sur la carte
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 48.8566, lng: 2.3522 },
-      zoom: 12,
-    });
+var points = JSON.parse("{{ points|raw }}");
 
-    map.addListener("click", (event) => {
-      const marker = new google.maps.Marker({
-        position: event.latLng,
-        map: map,
-      });
 
-      markers.push({ lat: event.latLng.lat(), lng: event.latLng.lng() }); // Ajoute le marqueur dans le tableau
-      console.log("Données ajoutées", markers);
-      inputHidden.value = JSON.stringify(markers);
-      console.log(inputHidden.value);
-    });
-  }
+function initMap() {
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 2,
+center: {
+lat: 0,
+lng: 0
+}
+});
+
+for (var i = 0; i < points.length; i++) {
+var marker = new google.maps.Marker({
+position: {
+lat: points[i].lat,
+lng: points[i].lng
+},
+map: map
+});
+}
+map.addListener("click", (event) => {
+const marker = new google.maps.Marker({position: event.latLng, map: map});
+
+markers.push({lat: event.latLng.lat(), lng: event.latLng.lng()}); // Ajoute le marqueur dans le tableau
+console.log("Données ajoutées", markers);
+inputHidden.value = JSON.stringify(markers);
+console.log(inputHidden.value);
+});
+}
+
+window.onload = function () {
+initMap();
+}
 </script>

@@ -71,7 +71,8 @@ class VoyageController extends AbstractController
     {
         $form = $this->createForm(VoyageType::class, $voyage);
         $form->handleRequest($request);
-    
+        $points = $voyage->getObject();
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $voyageRepository->save($voyage, true);
     
@@ -79,8 +80,10 @@ class VoyageController extends AbstractController
         }
     
         return $this->renderForm('voyage/edit.html.twig', [
+            'data' => "",
             'voyage' => $voyage,
             'form' => $form,
+            'points' => $points,
         ]);
     }
     

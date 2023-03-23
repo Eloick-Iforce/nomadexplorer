@@ -43,12 +43,14 @@ class StaticPages extends AbstractController
     #[Route('/voyage/{id}', name: 'app_voyage_show', methods: ['GET'])]
     public function show(Voyage $voyage): Response
     {
-        $object = $voyage->getObject();
-        $points = json_decode($object, true);
+        $points = json_decode($voyage->getObject());
+
+
+var_dump($points);
 
         return $this->render('voyage.html.twig', [
-            'points' => $points,
             'voyage' => $voyage,
+            'points' => $points,
         ]);
     }
 }

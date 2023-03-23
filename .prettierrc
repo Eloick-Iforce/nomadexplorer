@@ -1,0 +1,13 @@
+{
+  "overrides": [
+    {
+      "files": "*.twig",
+      "options": {
+        "parser": "twig",
+        "tabWidth": 4,
+        "singleQuote": true,
+        "semi": false
+      }
+    }
+  ]
+}

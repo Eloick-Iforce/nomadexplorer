@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VoyageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,8 +25,14 @@ class Voyage
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'voyage', targetEntity: Images::class , orphanRemoval: true, cascade: ['persist'])]
+    private Collection $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,14 +75,32 @@ class Voyage
         return $this;
     }
 
-    public function getImage(): ?string
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage(string $image): self
+    public function addImage(Images $image): self
     {
-        $this->image = $image;
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setVoyage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getVoyage() === $this) {
+                $image->setVoyage(null);
+            }
+        }
 
         return $this;
     }

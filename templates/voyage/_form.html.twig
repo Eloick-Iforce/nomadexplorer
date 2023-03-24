@@ -1,111 +1,14 @@
 {{ form_start(form, {'attr': {'class': 'flex flex-col gap-y-[20px] max-[520px] h-full mx-auto'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }}) }}
 {{ form_row(form.title, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }}) }}
-{{ form_row(form.image, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{{ form_row(form.images, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
 }}) }}
 {{ form_row(form.description, {'attr': {'class': 'p-2 rounded-lg border flex w-full text-black'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }}) }}
 {{ form_row(form.object, {'attr': {'class': 'hidden', 'value': data|json_encode
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }}) }}
 <div class="h-[440px]" id="map"></div>

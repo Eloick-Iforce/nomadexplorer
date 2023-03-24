@@ -8,3 +8,4 @@ app_save_data:
     path: /send-json
     methods: ['POST']
     controller: App\Controller\VoyageController::saveDataAction
+

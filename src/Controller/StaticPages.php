@@ -125,4 +125,10 @@ class StaticPages extends AbstractController
     {
         return $this->render('politique.html.twig');
     }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(): Response
+    {
+        return $this->render('contact.html.twig');
+    }
 }

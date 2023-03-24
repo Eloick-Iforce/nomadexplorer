@@ -63,9 +63,6 @@
 						<span class="font-bold">“</span>{{ commentaire.contenu}}<span class="font-bold">”</span>
 					</p>
 					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">{{ commentaire.user.pseudo }}</p>
-					<p class="font-light mt-2 text-sm md:text-lg md:mt-4">
-						Sr. Product Designer
-					</p>
 				</div>
 			</div>
 		</div>
@@ -79,14 +76,16 @@
 	<h1 class="font-bold text-4xl mt-40 mb-12 md:text-5xl">
 		Ajoutez un commentaire !
 	</h1>
-	<div class="mb-28">
-		<form class="flex flex-col" action="{{ path('app_voyage_commentaire', {'id': voyage.id}) }}" method="POST">
-			{{ form_widget(form) }}
-			<button type="submit" class="w-56 h-12 btn-gradient font-semibold inline mt-10">
-				Ajouter un commentaire
-			</button>
-		</form>
-	</div>
+    <div class="mb-28">
+        <form class="min-h-[221px]" action="{{ path('app_voyage_commentaire', {'id': voyage.id}) }}" method="POST">
+            <label class="font-bold mb-2 ml-2">Message*</label>
+            {{ form_row(form.contenu, {'label': false}) }}
+            {{ form_widget(form._token) }}
+            <button type="submit" class="w-56 h-12 btn-gradient font-semibold inline mt-10">
+                Ajouter
+            </button>
+        </form>
+    </div>
 
 
 	<script>

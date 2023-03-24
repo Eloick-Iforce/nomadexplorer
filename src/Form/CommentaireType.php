@@ -15,12 +15,11 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('contenu', TextareaType::class, [
-                'label' => 'Commentaire',
                 'attr' => [
-                    'placeholder' => 'Votre commentaire ici...',
-                    'rows' => 5,
+                    'placeholder' => 'Votre commentaire',
+                    'class' => 'w-7/12 min-h-[221px] text-black p-3 rounded-md',
                 ],
-            ])
+            ]);
         ;
     }
 

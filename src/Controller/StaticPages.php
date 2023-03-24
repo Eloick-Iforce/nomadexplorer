@@ -36,7 +36,7 @@ class StaticPages extends AbstractController
         // ]);
 
         return $this->render('voyages.html.twig', [
-            'voyages' => $voyageRepository->findAll(),
+            'voyages' => $voyageRepository->findBy([], ['id' => 'DESC']),
         ]); 
     }
 

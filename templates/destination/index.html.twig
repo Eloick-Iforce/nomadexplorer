@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% block title %}Destination index{% endblock %}
+{% block body %}
+
+
+<h1 class="text-white font-bold text-5xl mt-52">Circuit les plus <span class="gradient">appréciers</span></h1>
+
+<div class="flex justify-around mt-16">
+  <img class="w-96 h-96 rounded-3xl" src="{{ asset('images/image-test.jpg') }}" alt="image test" />
+  <img class="w-96 h-96 rounded-3xl" src="{{ asset('images/image-test.jpg') }}" alt="image test" />
+  <img class="w-96 h-96 rounded-3xl" src="{{ asset('images/image-test.jpg') }}" alt="image test" />
+</div>
+
+<h1 class="text-white font-bold text-5xl mt-40 mb-12">Liste des <span class="text-blueTitle">circuits</span></h1>
+
+<div class="flex">
+  <div class="flex flex-col w-1/5 pl-5 gap-5 text-white border-r border-solid border-grey">
+    <div class="flex flex-col gap-2">
+      <h2 class="font-bold text-3xl mb-2">Continent</h2>
+      <div class="flex items-center">
+        <input type="checkbox" id="continent-amerique" class="input-checkbox">
+        <label for="continent-amerique">Amérique</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="continent-asie" class="input-checkbox">
+        <label for="continent-asie">Asie</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="continent-europe" class="input-checkbox">
+        <label for="continent-europe">Europe</label>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-bold text-3xl mb-2">Prix</h2>
+      <div class="flex items-center">
+        <input type="checkbox" id="prix-100-500" class="input-checkbox">
+        <label for="prix-100-500">100€ - 500€</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="prix-500-1000" class="input-checkbox">
+        <label for="prix-500-1000">500€ - 1000€</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="prix-1500-plus" class="input-checkbox">
+        <label for="prix-1500-plus">1500€ +</label>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-bold text-3xl mb-2">Distance</h2>
+      <div class="flex items-center">
+        <input type="checkbox" id="distance-100-500" class="input-checkbox">
+        <label for="distance-100-500">100km - 500km</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="distance-500-1000" class="input-checkbox">
+        <label for="distance-500-1000">500km - 1000km</label>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" id="distance-1000-plus" class="input-checkbox">
+        <label for="distance-1000-plus">1000km +</label>
+      </div>
+    </div>
+    <button type="submit" class="w-36 h-12 btn-gradient font-semibold inline mx-auto mt-7">Découvrir</button>
+  </div>
+
+  <div class="w-4/5 px-7">
+    <h3 class="text-lg mb-7 text-gray-500 italic ml-7">47 résultats</h3>
+    <div class="flex flex-col gap-8">
+      <img src = "{{ asset('images/image-test.jpg') }}" alt="image test" class="w-full h-96 rounded-4xl bg-cover" />
+      <img src = "{{ asset('images/image-test.jpg') }}" alt="image test" class="w-full h-96 rounded-4xl bg-cover" />
+      <img src = "{{ asset('images/image-test.jpg') }}" alt="image test" class="w-full h-96 rounded-4xl bg-cover" />
+    </div>
+    <div class="flex content-center">
+      <button type="submit" class="w-36 h-12 btn-gradient font-semibold inline mx-auto mt-7 text-white">Voir plus</button>
+    </div>
+
+  </div>
+</div>
+
+{# <table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Lieu</th>
+      <th>Pays</th>
+      <th>Continent</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for destination in destinations %}
+    <tr>
+      <td>{{ destination.id }}</td>
+      <td>{{ destination.nom }}</td>
+      <td>{{ destination.description }}</td>
+      <td>{{ destination.lieu ? destination.lieu|json_encode : '' }}</td>
+      <td>{{ destination.pays }}</td>
+      <td>{{ destination.continent }}</td>
+      <td>
+        <a href="{{ path('app_destination_show', { id: destination.id }) }}">show</a>
+        <a href="{{ path('app_destination_edit', { id: destination.id }) }}">edit</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="7">no records found</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{{ path('app_destination_new') }}">Create new</a> #}
+{% endblock %}

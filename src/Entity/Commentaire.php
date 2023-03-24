@@ -14,22 +14,54 @@ class Commentaire
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Voyage $voyage = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $texte = null;
+    private ?string $contenu = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTexte(): ?string
+    public function getVoyage(): ?Voyage
     {
-        return $this->texte;
+        return $this->voyage;
     }
 
-    public function setTexte(string $texte): self
+    public function setVoyage(?Voyage $voyage): self
     {
-        $this->texte = $texte;
+        $this->voyage = $voyage;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
 
         return $this;
     }

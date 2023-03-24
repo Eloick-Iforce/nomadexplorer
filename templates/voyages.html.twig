@@ -13,7 +13,7 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
 		{% for voyage in voyages|slice(0, 3) %}
 			<a href="{{ path('app_voyage_show', { id: voyage.id }) }}" class="h-[200px] md:h-[350px] rounded-lg">
-				<div style="background-image: url('{{ voyage.image }}');" class="flex items-center justify-center rounded-lg w-full h-full bg-cover bg-center">
+				<div style="background-image: url('uploads/{{ voyage.images[0].name }}');" class="flex items-center justify-center rounded-lg w-full h-full bg-cover bg-center">
 					<h3 class="text-white text-4xl font-bold">{{ voyage.title }}</h3>
 				</div>
 			</a>
@@ -35,7 +35,7 @@
 			<div class="flex flex-col gap-8">
 				{% for voyage in voyages %}
 					<a href="{{ path('app_voyage_show', { id: voyage.id }) }}" class="h-[300px] rounded-lg">
-						<div style="background-image: url('{{ voyage.image }}');" class="image-overlay flex items-center justify-center rounded-lg w-full h-full bg-cover bg-center transition-opacity">
+						<div style="background-image: url('uploads/{{ voyage.images[0].name }}');" class="image-overlay flex items-center justify-center rounded-lg w-full h-full bg-cover bg-center transition-opacity">
 							<h3 class="text-white text-4xl font-bold">{{ voyage.title }}</h3>
 						</div>
 					</a>

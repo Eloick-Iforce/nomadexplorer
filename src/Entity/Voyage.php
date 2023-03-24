@@ -32,15 +32,12 @@ class Voyage
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     #[ORM\OneToMany(mappedBy: 'voyage', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    public function __construct()
-    {
-        $this->commentaires = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {

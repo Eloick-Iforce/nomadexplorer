@@ -50,4 +50,16 @@ class StaticPages extends AbstractController
             'points' => $points,
         ]);
     }
+
+    #[Route('/mentions-legales', name: 'mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('mentions.html.twig');
+    }
+
+    #[Route('/politique-de-confidentialite', name: 'politique')]
+    public function politique(): Response
+    {
+        return $this->render('politique.html.twig');
+    }
 }

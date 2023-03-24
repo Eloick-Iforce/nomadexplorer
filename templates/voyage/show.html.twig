@@ -5,16 +5,13 @@
 
 {% block body %}
 	<div class="mt-12 bg-red-500 text-white p-12 rounded-md">
-		<h1 class="text-3xl">Etes vous sur de vouloir supprimer ce voyage ?
-	</h1>
-			
-
-	<a class="bg-gray-500 rounded-md px-3 py-2" href="{{ path('app_voyage_admin') }} ">Annuler</a>
-
-
-
+		<h1 class="text-3xl font-bold mb-12">Etes vous sur de vouloir supprimer ce voyage ?
+		</h1>
+		<div class="flex gap-6 items-center">
+			<a class="inline-block bg-gray-500 rounded-md px-3 py-2" href="{{ path('app_voyage_admin') }} ">Annuler</a>
+			{{ include('voyage/_delete_form.html.twig') }}
+		</div>
 	</div>
 
 
-	{{ include('voyage/_delete_form.html.twig') }}
 {% endblock %}

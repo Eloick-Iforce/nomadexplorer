@@ -6,6 +6,7 @@
          {% block title %}Accueil | Nomad Explorer
          {% endblock %}
       </title>
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link
          rel="icon" type="image/x-icon" href="{{ asset('images/logo-nomadlist.svg') }}"/>
@@ -153,4 +154,8 @@
    
    menu()
 </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+   AOS.init();
+ </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC53kzUhbVD2iOqrf5wAKV658hsInrKzjI&callback=initMap" async defer></script>

@@ -1,152 +1,156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}Accueil | Nomad Explorer {% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
-    />
-    {# Run `composer require symfony/webpack-encore-bundle` to start using
-    Symfony UX #} {% block stylesheets %}
-    {{
+   <head>
+      <meta charset="UTF-8"/>
+      <title>
+         {% block title %}Accueil | Nomad Explorer
+         {% endblock %}
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link
+         rel="icon" type="image/x-icon" href="{{ asset('images/logo-nomadlist.svg') }}"/>
+      {# Run `composer require symfony/webpack-encore-bundle` to start using
+      Symfony UX #}
+      {% block stylesheets %}
+      {{
       encore_entry_link_tags("app")
-    }}
-    {% endblock %} {% block javascripts %}
-    {{
+      }}
+      {% endblock %}
+      {% block javascripts %}
+      {{
       encore_entry_script_tags("app")
-    }}
-    {% endblock %}
-  </head>
-  <body>
-    <nav id="nav" class="fixed top-0 w-full h-[72px] z-10">
-      <div class="flex justify-between items-center text-white container">
-        <a href="{{ path('home') }}" role="button" class="flex items-center">
-          <img
-            src="{{ asset('images/logo-nomadlist.svg') }}"
-            alt="logo nomadlist"
-          />
-          <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
-        </a>
+      }}
+      {% endblock %}
+   </head>
+   <body>
+      <nav id="nav" class="fixed top-0 w-full h-[72px] z-10">
+         <div class="flex justify-between items-center text-white container">
+            <a href="{{ path('home') }}" role="button" class="flex items-center">
+               <img src="{{ asset('images/logo-nomadlist.svg') }}" alt="logo nomadlist"/>
+               <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
+            </a>
 
-        <ul class="hidden items-center lg:flex">
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('home') }}">Accueil</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('voyages') }}">Voir les voyages</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('contact') }}">Contact</a>
-          </li>
-        </ul>
+            <ul class="hidden items-center lg:flex menu">
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('home') }}">Accueil</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('voyages') }}">Voir les voyages</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('contact') }}">Contact</a>
+               </li>
+			   
+			   {# Button de login/logout en petit écran #}
+               {% if app.user %}
+               {% if is_granted('ROLE_ADMIN') %}
+               <li class="block py-3 px-6 transition rounded-[10px] hover:cursor-pointer lg:hidden">
+                  <a class="bg-red-500 rounded-lg py-2 px-3" href="{{ path('app_voyage_admin') }}">Accès à l'admin</a>
+               </li>
+               {% endif %}
+               {% endif %}
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] lg:hidden hover:cursor-pointer">
+                  {% if app.user %}
+                  <a href="{{ path('app_logout') }}">Se déconnecter de {{ app.user.userIdentifier }}
+                  </a>
+                  {% else %}
+                  <a href="{{ path('app_login') }}">Se connecter</a>
+                  {% endif %}
+               </li>
+            </ul>
 
-        <div class="hidden gap-6 font-bold lg:flex items-center">
-          {% if app.user %} {% if is_granted('ROLE_ADMIN') %}
-          <a
-            class="bg-red-500 rounded-md px-4 py-3"
-            href="{{ path('app_voyage_admin') }}"
-            >Admin</a
-          >
-          {% endif %}
+			{# Button de login/logout en pleine écran #}
+            <div class="hidden gap-6 font-bold lg:flex items-center">
+               {% if app.user %}
+               {% if is_granted('ROLE_ADMIN') %}
+               <a class="bg-red-500 rounded-md px-4 py-3" href="{{ path('app_voyage_admin') }}">Admin</a>
+               {% endif %}
+               <a href="{{ path('app_logout') }}">Se déconnecter de
+               <span class="font-bold">
+               {{ app.user.userIdentifier }}</span>
+               </a>
+            </div>
+            {% else %}
+            <a href="{{ path('app_login') }}">Se connecter</a>
+            {# <a href="#">S'inscrire</a> #}
+         </div>
+         {% endif %}
 
-          <a href="{{ path('app_logout') }}"
-            >Se déconnecter de
-            <span class="font-bold"> {{ app.user.userIdentifier }}</span></a
-          >
-        </div>
-        {% else %}
-        <a href="{{ path('app_login') }}">Se connecter</a>
-        {# <a href="#">S'inscrire</a> #}
-      </div>
-      {% endif %}
-    </nav>
+		 {# Icon de menu burger #}
+         <div class="flex items-center justify-center lg:hidden">
+            <button class="btn-menu">
+            <img class="w-full" src="{{ asset('images/icon-menu.svg') }}" alt="icon de menu"/>
+            </button>
+         </div>
+      </nav>
 
-    <main class="container grow" style="margin-top: 72px">
-      {% block body %}{% endblock %}
-    </main>
+      <main class=" container grow" style=" margin-top: 72px"> {% block body %}{% endblock %}</main>
 
-    <footer class="pt-12 border-t border-[#5D666E] mt-12">
-      <div class="container">
-        <div class="flex justify-center items-center w-full">
-          <a href="{{ path('home') }}" role="button" class="flex items-center">
-            <img
-              src="{{ asset('images/logo-nomadlist.svg') }}"
-              alt="logo nomadlist"
-            />
-            <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
-          </a>
-        </div>
-
-        <ul
-          class="flex flex-col justify-center items-center text-white font-bold my-12 lg:flex-row"
-        >
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('home') }}">Acceuil</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('voyages') }}">Trouver un voyage</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('home') }}">Contact</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('mentions') }}">Mentions légales</a>
-          </li>
-          <li
-            class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer"
-          >
-            <a href="{{ path('politique') }}">Politiques de confitiendalité</a>
-          </li>
-        </ul>
-
-        <div
-          class="flex flex-col items-center justify-between text-sm text-[#F7FAFC] py-12 md:flex-row"
-        >
-          <p>
-            &copy; Build by Axel Pointud | Sebastien Gross | Eloïck Mickisz |
-            Gabin Chenot
-          </p>
-          <p>BUT MMI2 - SAE401</p>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      // animation nav bar
-      function animationNavbar() {
-        const nav = document.querySelector("#nav");
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 20) {
-            nav.classList.add("nav-active");
-          } else {
-            nav.classList.remove("nav-active");
-          }
-        });
-      }
-      animationNavbar();
-    </script>
-
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC53kzUhbVD2iOqrf5wAKV658hsInrKzjI&callback=initMap"
-      async
-      defer
-    ></script>
-  </body>
+      <footer class="pt-12 border-t border-[#5D666E] mt-12">
+         <div class="container">
+            <div class="flex justify-center items-center w-full">
+               <a href="{{ path('home') }}" role="button" class="flex items-center">
+                  <img src="{{ asset('images/logo-nomadlist.svg') }}" alt="logo nomadlist"/>
+                  <h1 class="text-white font-bold text-xl">NomadExplorer</h1>
+               </a>
+            </div>
+            <ul class="flex flex-col justify-center items-center text-white font-bold my-12 lg:flex-row">
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('home') }}">Acceuil</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('voyages') }}">Trouver un voyage</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('home') }}">Contact</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('mentions') }}">Mentions légales</a>
+               </li>
+               <li class="block py-3 px-6 transition hover:bg-[#22303E] rounded-[10px] hover:cursor-pointer">
+                  <a href="{{ path('politique') }}">Politiques de confitiendalité</a>
+               </li>
+            </ul>
+            <div class="flex flex-col items-center justify-between text-sm text-[#F7FAFC] py-12 md:flex-row">
+               <p>
+                  &copy; Build by Axel Pointud | Sebastien Gross | Eloïck Mickisz |
+                  Gabin Chenot
+               </p>
+               <p>BUT MMI2 - SAE401</p>
+            </div>
+         </div>
+      </footer>
+   </body>
 </html>
+
+<script>// animation nav bar
+   function animationNavbar() {
+   const nav = document.querySelector("#nav");
+   
+   window.addEventListener("scroll", () => {
+   if (window.scrollY > 20) {
+   nav.classList.add("nav-active");
+   } else {
+   nav.classList.remove("nav-active");
+   }
+   });
+   }
+   animationNavbar();
+   
+   function menu() {
+   const btn = document.querySelector('.btn-menu')
+   const menu = document.querySelector('.menu')
+   btn.addEventListener('click', () => {
+   menu.classList.toggle('active-menu')
+   })
+   
+   window.addEventListener('resize', () => {
+       if (window.matchMedia("(min-width: 800px)").matches) {
+   		menu.classList.remove('active-menu')
+       }
+   })
+   }
+   
+   menu()
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC53kzUhbVD2iOqrf5wAKV658hsInrKzjI&callback=initMap" async defer></script>

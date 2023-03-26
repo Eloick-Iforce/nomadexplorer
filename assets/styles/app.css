@@ -69,3 +69,18 @@
   transition: transform 0.3s ease-in-out;
 }
 
+/* Menu in mobile */
+.active-menu {
+  display: block;
+  position: absolute;
+  top: 72px;
+  right: 0;
+  left: 0;
+  background: #368bee;
+}
+
+.active-menu a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

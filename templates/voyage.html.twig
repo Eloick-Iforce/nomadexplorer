@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}Parcours Etats-Unis
+{% block title %}Voyage |
+	{{voyage.title}}
 {% endblock
 %}
 {% block body %}
@@ -53,110 +54,105 @@
 
 	<h1 class="font-bold text-4xl mt-40 mb-14 md:text-5xl">Commentaires</h1>
 	{% for commentaire in voyage.commentaires %}
-	<div class="flex flex-col gap-11">
-		<div class="relative -z-10">
-			<div class="absolute -inset-1 commentaire-bg"></div>
-			<div class="relative flex p-2 items-center bg-checkbox rounded-xl md:p-3">
-				<img class="w-44 h-44 rounded-lg" src="{{ asset('images/commentaire.png') }}" alt="image test"/>
-				<div class="ml-4">
-					<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
-						<span class="font-bold">“</span>{{ commentaire.contenu}}<span class="font-bold">”</span>
-					</p>
-					<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">{{ commentaire.user.pseudo }}</p>
+		<div class="flex flex-col gap-11">
+			<div class="relative -z-10">
+				<div class="absolute -inset-1 commentaire-bg"></div>
+				<div class="relative flex p-2 items-center bg-checkbox rounded-xl md:p-3">
+					<img class="w-44 h-44 rounded-lg" src="{{ asset('images/commentaire.png') }}" alt="image test"/>
+					<div class="ml-4">
+						<p class="text-base font-extralight md:pr-24 lg:text-[22px]">
+							<span class="font-bold">“</span>
+							{{ commentaire.contenu}}<span class="font-bold">”</span>
+						</p>
+						<p class="font-bold mt-2 text-sm md:text-lg md:mt-4">{{ commentaire.user.pseudo }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	{% else %}
-	<p class="font-light mt-2 text-sm md:text-lg md:mt-4">Aucun commentaire</p>
+		<p class="font-light mt-2 text-sm md:text-lg md:mt-4">Aucun commentaire</p>
 	{% endfor %}
-
 
 
 	<h1 class="font-bold text-4xl mt-40 mb-12 md:text-5xl">
 		Ajoutez un commentaire !
 	</h1>
 	{% if app.user %}
-	    <div class="mb-28">
-        <form class="min-h-[221px]" action="{{ path('app_voyage_commentaire', {'id': voyage.id}) }}" method="POST">
-            <label class="font-bold mb-2 ml-2">Message*</label>
-            {{ form_row(form.contenu, {'label': false}) }}
-            {{ form_widget(form._token) }}
-            <button type="submit" class="w-56 h-12 btn-gradient font-semibold inline mt-10">
-                Ajouter
-            </button>
-        </form>
-    </div>
+		<div class="mb-28">
+			<form class="min-h-[221px]" action="{{ path('app_voyage_commentaire', {'id': voyage.id}) }}" method="POST">
+				<label class="font-bold mb-2 ml-2">Message*</label>
+				{{ form_row(form.contenu, {'label': false}) }}
+				{{ form_widget(form._token) }}
+				<button type="submit" class="w-56 h-12 btn-gradient font-semibold inline mt-10">
+					Ajouter
+				</button>
+			</form>
+		</div>
 	{% else %}
-	<p class="font-light mt-2 mb-4 text-sm md:text-lg md:mt-4">Vous devez être connecté pour ajouter un commentaire</p>
-        <a class="mt-4 btn-bleu" href="{{ path('app_login') }}">Se connecter</a>
+		<p class="font-light mt-2 mb-4 text-sm md:text-lg md:mt-4">Vous devez être connecté pour ajouter un commentaire</p>
+		<a class="mt-4 btn-bleu" href="{{ path('app_login') }}">Se connecter</a>
 
 	{% endif %}
 
 
-
-
-
-
 	<script>
 		{% if points is not empty %}
-		var points = {{ points|json_encode|raw }};
-		console.log(points);
-		{% else %}
-		var points = [];
-		{% endif %}
+var points = {{ points|json_encode|raw }};
+console.log(points);
+{% else %}
+var points = [];{% endif %}
 
-		function initMap() {
-			var map = new google.maps.Map(document.getElementById("map"), {
-				zoom: 2,
-				center: {
-					lat: 0,
-					lng: 0
-				}
-			});
-			
-			var bounds = new google.maps.LatLngBounds(); // Nouvel objet bounds
-			var waypoints = []; // Tableau des waypoints
+function initMap() {
+var map = new google.maps.Map(document.getElementById("map"), {
+zoom: 2,
+center: {
+lat: 0,
+lng: 0
+}
+});
 
-			for (var i = 0; i < points.length; i++) {
-				var marker = new google.maps.Marker({
-					position: {
-						lat: points[i].lat,
-						lng: points[i].lng
-					},
-					map: map
-				});
+var bounds = new google.maps.LatLngBounds(); // Nouvel objet bounds
+var waypoints = []; // Tableau des waypoints
 
-				bounds.extend(marker.getPosition()); // Ajout du marker aux limites de l'objet bounds
-				waypoints.push({location: marker.getPosition()}); // Ajout du waypoint au tableau
-			}
+for (var i = 0; i < points.length; i++) {
+var marker = new google.maps.Marker({
+position: {
+lat: points[i].lat,
+lng: points[i].lng
+},
+map: map
+});
 
-			var directionsService = new google.maps.DirectionsService();
-			var directionsRenderer = new google.maps.DirectionsRenderer();
-			directionsRenderer.setMap(map);
+bounds.extend(marker.getPosition()); // Ajout du marker aux limites de l'objet bounds
+waypoints.push({location: marker.getPosition()}); // Ajout du waypoint au tableau
+}
 
-			// Options de l'itinéraire
-			var request = {
-				origin: waypoints[0].location,
-				destination: waypoints[waypoints.length - 1].location,
-				waypoints: waypoints.slice(1, waypoints.length - 1),
-				optimizeWaypoints: true,
-				travelMode: google.maps.TravelMode.DRIVING
-			};
+var directionsService = new google.maps.DirectionsService();
+var directionsRenderer = new google.maps.DirectionsRenderer();
+directionsRenderer.setMap(map);
 
-			// Calcul de l'itinéraire
-			directionsService.route(request, function(result, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionsRenderer.setDirections(result);
-				}
-			});
+// Options de l'itinéraire
+var request = {
+origin: waypoints[0].location,
+destination: waypoints[waypoints.length - 1].location,
+waypoints: waypoints.slice(1, waypoints.length - 1),
+optimizeWaypoints: true,
+travelMode: google.maps.TravelMode.DRIVING
+};
 
-			map.fitBounds(bounds); // Ajustement de la carte aux limites de l'objet bounds
-		}
+// Calcul de l'itinéraire
+directionsService.route(request, function (result, status) {
+if (status == google.maps.DirectionsStatus.OK) {
+directionsRenderer.setDirections(result);
+}
+});
 
-		window.onload = function () {
-			initMap();
-		};
+map.fitBounds(bounds); // Ajustement de la carte aux limites de l'objet bounds
+}
+
+window.onload = function () {
+initMap();
+};
 	</script>
 
 {% endblock %}
